@@ -1,0 +1,32 @@
+{
+    "name": "mederickbernier/defense",
+    "description": "Defensive toolkit for PHP backends: guards, result, retry, idempotency, problem+json, PDO helpers, request-id.",
+    "type": "library",
+    "keywords": ["defensive","guard","retry","idempotency","problem+json","pdo","psr-3","psr-7","psr-15"],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mede\\Defense\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mederick Bernier",
+            "email": "mederick.bernier@hotmail.ca"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "psr/log": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.3",
+        "phpstan/phpstan": "^2.1"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "support":{
+        "issues":"",
+        "source":""
+    }
+}
