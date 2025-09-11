@@ -4,3 +4,8 @@
 .phpunit.result.cache
 .php-cs-fixer.cache
 composer.lock
+/tests export-ignore
+/.github export-ignore
+/.php-cs-fixer.dist.php export-ignore
+/phpstan.neon export-ignore
+/phpunit.xml export-ignore

@@ -68,7 +68,8 @@ final class Guard
      * @param string $message Optional. The exception message if the value is empty. Defaults to "Value cannot be empty".
      * @throws \InvalidArgumentException If the string is empty after trimming.
      */
-    public static function notEmptyString(string $value, string $message = "Value cannot be empty"):void{
+    public static function notEmptyString(string $value, string $message = 'Value cannot be empty'): void
+    {
         self::against(trim($value) === '', $message);
     }
 
@@ -81,21 +82,23 @@ final class Guard
      *
      * @throws \Exception If the string length exceeds the maximum allowed.
      */
-    public static function maxLength(string $value, int $max, string $message = "String too long"):void{
-     self::against(mb_strlen($value)>$max, $message);   
+    public static function maxLength(string $value, int $max, string $message = 'String too long'): void
+    {
+        self::against(mb_strlen($value) > $max, $message);
     }
 
     /**
      * Validates that a given value exists within a specified array.
      *
      * @param string|int $needle   The value to search for in the array.
-     * @param array      $haystack The array to search within.
+     * @param array<mixed>      $haystack The array to search within.
      * @param string     $message  The exception message to use if validation fails. Defaults to "Invalid value".
      *
      * @throws \InvalidArgumentException If the value is not found in the array.
      */
-    public static function inArray(string|int $needle, array $haystack, string $message = "Invalid value"):void{
-        self::against(!in_array($needle, $haystack, true), $message);
+    public static function inArray(string|int $needle, array $haystack, string $message = 'Invalid value'): void
+    {
+        self::against(!\in_array($needle, $haystack, true), $message);
     }
 
     /**
@@ -109,7 +112,8 @@ final class Guard
      *
      * @throws \Exception If $value is less than or equal to $min.
      */
-    public static function greaterThan(int|float $value, int|float $min, string $message = "Too small"):void{
+    public static function greaterThan(int|float $value, int|float $min, string $message = 'Too small'): void
+    {
         self::against($value <= $min, $message);
     }
 }
