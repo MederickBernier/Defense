@@ -10,4 +10,5 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with: { php-version: ${{ matrix.php }}, coverage: none }
       - run: composer install --no-interaction --prefer-dist
-      - run: composer qa
+      - run: vendor/bin/phpstan analyse --no-progress
+      - run: vendor/bin/phpunit --colors=always
