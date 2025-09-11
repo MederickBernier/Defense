@@ -11,11 +11,12 @@ It provides lightweight building blocks for safer, more resilient code: guards, 
 
 ## Features
 
-- 🔒 **Guards** — fail-fast validation for inputs.
+- 🔒 **Guards** — fail-fast validation for inputs (`notNull`, `notEmptyString`, `positiveInt`, `inArray`, …).
 - ✅ **Result type** — explicit success/error wrapping.
 - 🔁 **Retry** — automatic retry with backoff.
 - 🆔 **Idempotency & Request-Id** — helpers for safer HTTP APIs.
 - 📄 **Problem+JSON** — RFC 7807 error responses.
+- 📊 **Pagination** — simple helper for query parsing + meta output.
 - 🗄️ **Tx & Db** — transaction runner and PDO factory with safe defaults.
 - 🔑 **Password & ConstantTime** — security primitives with safe defaults.
 - 🔍 **Observability stubs** — request IDs, logs.
@@ -29,9 +30,11 @@ It provides lightweight building blocks for safer, more resilient code: guards, 
 ```php
 use Mede\Defense\Core\Guard;
 
+Guard::notNull($id, 'ID required');
 Guard::notEmptyString($name, 'Name required');
 Guard::positiveInt($age, 'Age must be > 0');
-Guard::inArray($role, ['user', 'admin'], 'Invalid role');
+Guard::maxLength($username, 20, 'Username too long');
+Guard::inArray($role, ['user','admin'], 'Invalid role');
 ```
 
 ### Result
@@ -59,6 +62,16 @@ use Mede\Defense\Http\ProblemJson;
 
 $response = ProblemJson::build(400, 'Invalid Request', 'Missing field: email');
 // => ['type'=>'about:blank','title'=>'Invalid Request','status'=>400,'detail'=>'Missing field: email']
+```
+
+### Pagination
+
+```php
+use Mede\Defense\Http\Pagination;
+
+$p = Pagination::fromQuery($_GET, max:50, default:10);
+$meta = $p->meta(120);
+// ['page'=>1,'per_page'=>10,'total'=>120,'pages'=>12]
 ```
 
 ### Transactions
@@ -114,9 +127,9 @@ CI runs against PHP 8.2, 8.3, and 8.4.
 
 ## Roadmap
 
-- **v0.2** — Expand Guards, add Pagination helper, enrich Problem+JSON builder.  
-- **v0.3** — Request-ID middleware, JWT adapter interface, HealthCheck builder.  
-- **v0.4+** — Logging facade, observability hooks, adapters for caching/storage.  
+- **v0.2** — Expand Guards, add HealthCheck builder, enrich Problem+JSON builder.  
+- **v0.3** — Request-ID middleware, JWT adapter interface, better Observability hooks.  
+- **v0.4+** — Logging facade, integrations with frameworks (Slim/Laravel).  
 - **v1.0** — Stable API surface with 85–90% coverage, Packagist-ready.
 
 ---
