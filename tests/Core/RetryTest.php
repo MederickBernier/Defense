@@ -11,10 +11,9 @@ use Random\RandomException;
 final class RetryTest extends TestCase
 {
     /**
-     * @return void 
-     * @throws Throwable 
-     * @throws RandomException 
-     * @throws ExpectationFailedException 
+     * @throws Throwable
+     * @throws RandomException
+     * @throws ExpectationFailedException
      */
     public function testRetrySucceedsAfterFailures(): void
     {

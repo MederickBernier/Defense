@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Mede\Defense\Core;
 
-use Random\RandomException;
 use Throwable;
 
 final class Retry

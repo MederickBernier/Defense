@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 /** @package  */
 final class GuardTest extends TestCase
 {
-    /** @return void  */
+    /**  */
     public function testAgainstThrows(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -17,8 +17,7 @@ final class GuardTest extends TestCase
     }
 
     /**
-     * @return void 
-     * @throws ExpectationFailedException 
+     * @throws ExpectationFailedException
      */
     public function testAgainstPasses(): void
     {

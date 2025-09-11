@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Mede\Defense\Persistence;
 
 use PDO;
-use PDOException;
 use Throwable;
 
 final class Tx

@@ -10,7 +10,7 @@ final class Password
      * Hashes a plain text password using a secure algorithm.
      *
      * @param string $plain   The plain text password to hash.
-     * @param array  $options Optional array of options for password hashing (e.g., cost).
+     * @param array<string,mixed>  $options Optional array of options for password hashing (e.g., cost).
      *
      * @return string The hashed password.
      */
@@ -42,7 +42,7 @@ final class Password
      * for example, if the algorithm or its options have changed since the hash was created.
      *
      * @param string $hash    The existing password hash to check.
-     * @param array  $options Optional. An associative array of options for the hashing algorithm.
+     * @param array<string,mixed>  $options Optional. An associative array of options for the hashing algorithm.
      *                        Refer to PHP documentation for supported options.
      *
      * @return bool Returns true if the hash needs to be rehashed, false otherwise.

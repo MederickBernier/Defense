@@ -13,7 +13,9 @@ final class Result
      * @param mixed $val The value associated with a successful result (optional).
      * @param string|null $err The error message if the result is unsuccessful (optional).
      */
-    private function __construct(public bool $ok, public mixed $val = null, public ?string $err = null) {}
+    private function __construct(public bool $ok, public mixed $val = null, public ?string $err = null)
+    {
+    }
 
     /**
      * Creates a successful Result instance with the provided value.

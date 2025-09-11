@@ -17,7 +17,7 @@ final class Db
      *
      * @return PDO Returns a PDO instance representing a connection to the database.
      *
-     * @throws PDOException If the attempt to connect to the database fails.
+     * @throws \PDOException If the attempt to connect to the database fails.
      */
     public static function connect(string $dsn, string $user = '', string $pass = ''): PDO
     {

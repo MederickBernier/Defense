@@ -19,12 +19,16 @@ final class ConstantTime
      */
     public static function equals(string $a, string $b): bool
     {
-        if (function_exists('hash_equals')) return hash_equals($a, $b);
-        $len = strlen($a);
-        if ($len !== strlen($b)) return false;
+        if (\function_exists('hash_equals')) {
+            return hash_equals($a, $b);
+        }
+        $len = \strlen($a);
+        if ($len !== \strlen($b)) {
+            return false;
+        }
         $res = 0;
         for ($i = 0; $i < $len; $i++) {
-            $res |= (ord($a[$i]) ^ ord($b[$i]));
+            $res |= (\ord($a[$i]) ^ \ord($b[$i]));
         }
         return $res === 0;
     }

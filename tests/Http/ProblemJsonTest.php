@@ -10,8 +10,7 @@ use PHPUnit\Framework\TestCase;
 final class ProblemJsonTest extends TestCase
 {
     /**
-     * @return void 
-     * @throws ExpectationFailedException 
+     * @throws ExpectationFailedException
      */
     public function testShape(): void
     {

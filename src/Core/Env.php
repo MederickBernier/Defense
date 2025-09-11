@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Mede\Defense\Core;
 
-use RuntimeException;
-
 final class Env
 {
     /**
