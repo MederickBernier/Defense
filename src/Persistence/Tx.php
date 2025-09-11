@@ -8,15 +8,19 @@ use PDO;
 use PDOException;
 use Throwable;
 
-/** @package Mede\Defense\Persistence */
 final class Tx
 {
     /**
-     * @param PDO $pdo 
-     * @param callable $fn 
-     * @return mixed 
-     * @throws PDOException 
-     * @throws Throwable 
+     * Executes a callable within a database transaction.
+     *
+     * Begins a transaction on the provided PDO instance, executes the given callable,
+     * and commits the transaction if successful. If an exception is thrown during execution,
+     * the transaction is rolled back and the exception is rethrown.
+     *
+     * @param PDO $pdo The PDO instance to use for the transaction.
+     * @param callable $fn The function to execute within the transaction.
+     * @return mixed The result returned by the callable.
+     * @throws Throwable If an error occurs during execution, after rolling back the transaction.
      */
     public static function run(PDO $pdo, callable $fn): mixed
     {

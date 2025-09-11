@@ -7,8 +7,14 @@ namespace Mede\Defense\Http;
 final class ProblemJson
 {
     /**
-     * @param array<string,mixed> $ext
-     * @return array<string,mixed>
+     * Builds a Problem Details JSON response array according to RFC 7807.
+     *
+     * @param int    $status HTTP status code.
+     * @param string $title  Short, human-readable summary of the problem.
+     * @param string $detail Detailed, human-readable explanation of the problem.
+     * @param array  $ext    Additional extension members to include in the response.
+     *
+     * @return array The Problem Details response array.
      */
     public static function build(int $status, string $title, string $detail, array $ext = []): array
     {

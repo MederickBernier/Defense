@@ -6,14 +6,18 @@ namespace Mede\Defense\Persistence;
 
 use PDO;
 
-/** @package Mede\Defense\Persistence */
 final class Db
 {
     /**
-     * @param string $dsn 
-     * @param string $user 
-     * @param string $pass 
-     * @return PDO 
+     * Establishes a connection to a database using PDO.
+     *
+     * @param string $dsn  The Data Source Name, or DSN, containing the information required to connect to the database.
+     * @param string $user The username for the DSN string. Optional, defaults to an empty string.
+     * @param string $pass The password for the DSN string. Optional, defaults to an empty string.
+     *
+     * @return PDO Returns a PDO instance representing a connection to the database.
+     *
+     * @throws PDOException If the attempt to connect to the database fails.
      */
     public static function connect(string $dsn, string $user = '', string $pass = ''): PDO
     {
