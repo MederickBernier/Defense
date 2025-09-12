@@ -5,9 +5,9 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 **Defense** is a small, framework-agnostic defensive toolkit for PHP 8.2+ backends.  
-It provides lightweight building blocks for safer, more resilient code: guards, results, retries, idempotency, and helpers around HTTP and persistence.
+It provides lightweight building blocks for safer, more resilient code: guards, results, retries, idempotency, and helpers around HTTP, persistence, and observability.
 
-
+---
 
 ## Features
 
@@ -19,7 +19,7 @@ It provides lightweight building blocks for safer, more resilient code: guards, 
 - 📊 **Pagination** — simple helper for query parsing + meta output.
 - 🗄️ **Tx & Db** — transaction runner and PDO factory with safe defaults.
 - 🔑 **Password & ConstantTime** — security primitives with safe defaults.
-- 🔍 **Observability stubs** — request IDs, logs.
+- 🔍 **Observability** — health checks and request IDs.
 
 ---
 
@@ -105,6 +105,30 @@ Password::verify('secret', $hash); // true
 ConstantTime::equals('abc', 'abc'); // true
 ```
 
+### Observability — Health Checks
+
+```php
+use Mede\Defense\Observability\HealthCheck;
+
+$hc = (new HealthCheck())
+    ->add('db', fn() => $pdo->query('SELECT 1') !== false)
+    ->add('cache', fn() => $redis->ping() === '+PONG');
+
+$results = $hc->run();
+// [['name'=>'db','ok'=>true], ['name'=>'cache','ok'=>true]]
+
+$allOk = $hc->allOk(); // true/false
+```
+
+### Observability — Request ID
+
+```php
+use Mede\Defense\Observability\RequestId;
+
+$id = RequestId::ensure($_SERVER['HTTP_X_REQUEST_ID'] ?? null);
+// stable request ID, or new if none provided
+```
+
 ---
 
 ## Development
@@ -127,9 +151,9 @@ CI runs against PHP 8.2, 8.3, and 8.4.
 
 ## Roadmap
 
-- **v0.2** — Expand Guards, add HealthCheck builder, enrich Problem+JSON builder.  
 - **v0.3** — Request-ID middleware, JWT adapter interface, better Observability hooks.  
-- **v0.4+** — Logging facade, integrations with frameworks (Slim/Laravel).  
+- **v0.4** — Logging facade, idempotency helpers with Redis/Postgres.  
+- **v0.5+** — Framework integrations (Slim/Laravel), advanced reliability patterns.  
 - **v1.0** — Stable API surface with 85–90% coverage, Packagist-ready.
 
 ---
