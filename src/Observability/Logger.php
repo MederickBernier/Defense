@@ -15,7 +15,6 @@ final class Logger
      * Sets the logger instance to be used by the class.
      *
      * @param LoggerInterface $logger The logger instance to set.
-     * @return void
      */
     public static function set(LoggerInterface $logger): void
     {

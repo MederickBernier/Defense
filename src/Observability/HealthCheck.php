@@ -6,13 +6,16 @@ namespace Mede\Defense\Observability;
 
 final class HealthCheck
 {
+    /**
+     * @var array<string, callable():bool> Map of health check names to functions that return bool.
+     */
     private array $checks = [];
 
     /**
      * Adds a health check callable to the list of checks.
      *
      * @param string   $name The name of the health check.
-     * @param callable $fn   The callable function that performs the health check.
+     * @param callable():bool $fn   The callable function that performs the health check.
      * @return self Returns the current instance for method chaining.
      */
     public function add(string $name, callable $fn): self
@@ -28,9 +31,7 @@ final class HealthCheck
      * If a check throws an exception or error, it is considered failed (`ok` = false).
      * Each result contains the check's name and its status.
      *
-     * @return array An array of associative arrays with keys:
-     *               - 'name': string, the name of the health check
-     *               - 'ok': bool, true if the check passed, false otherwise
+     * @return array<int, array{name:string, ok:bool}> An array of results, each with 'name' and 'ok' status.
      */
     public function run(): array
     {

@@ -30,6 +30,7 @@
     "cs-fix": "php-cs-fixer fix --allow-risky=yes",
     "cs-check": "php-cs-fixer fix --dry-run --diff",
     "qa": [
+      "@cs-fix",
       "@cs-check",
       "@stan",
       "@test"

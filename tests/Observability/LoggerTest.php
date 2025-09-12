@@ -17,7 +17,7 @@ final class LoggerTest extends TestCase
     public function testSetCustomLogger(): void
     {
         $messages = [];
-        $custom = new class($messages) extends AbstractLogger {
+        $custom = new class ($messages) extends AbstractLogger {
             /** @var array<int, array{level:string, message:string}> */
             public array $messages;
             public function __construct(array &$store)

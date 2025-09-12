@@ -13,7 +13,6 @@ final class RequestId
      * hexadecimal string, suitable for use as a request ID in observability and tracing.
      *
      * @return string A 32-character hexadecimal string representing the request ID.
-     * @throws Exception If it was not possible to gather sufficient entropy.
      */
     public static function generate(): string
     {

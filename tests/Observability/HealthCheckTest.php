@@ -10,8 +10,8 @@ final class HealthCheckTest extends TestCase
     public function testRunAndAllOk(): void
     {
         $hc = new HealthCheck();
-        $hc->add('ok', fn(): bool => true)
-            ->add('fail', fn(): bool => false);
+        $hc->add('ok', fn (): bool => true)
+            ->add('fail', fn (): bool => false);
 
         $results = $hc->run();
         $this->assertCount(2, $results);
