@@ -13,7 +13,7 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          coverage: none
+          coverage: ${{matrix.coverage && 'xdebug' || 'none'}}
 
       # Resolve dev deps compatible with the current PHP in matrix
       - run: composer update --no-interaction --prefer-dist --no-progress
