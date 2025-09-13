@@ -14,11 +14,12 @@ It provides lightweight building blocks for safer, more resilient code: guards, 
 - 🔒 **Guards** — fail-fast validation for inputs (`notNull`, `notEmptyString`, `positiveInt`, `inArray`, …).
 - ✅ **Result type** — explicit success/error wrapping.
 - 🔁 **Retry** — automatic retry with backoff.
-- 🆔 **Idempotency & Request-Id** — helpers for safer HTTP APIs.
-- 📄 **Problem+JSON** — RFC 7807 error responses.
+- 🆔 **Idempotency & Request-Id** — helpers and PSR-15 middleware for safer HTTP APIs.
+- 📄 **Problem+JSON** — RFC 7807 error responses (`build`, `fromException`, `validationError`).
 - 📊 **Pagination** — simple helper for query parsing + meta output.
 - 🗄️ **Tx & Db** — transaction runner and PDO factory with safe defaults.
 - 🔑 **Password & ConstantTime** — security primitives with safe defaults.
+- 🔐 **JWT Interface** — pluggable adapter for token handling.
 - 🔍 **Observability** — health checks and request IDs.
 
 ---
@@ -129,6 +130,16 @@ $id = RequestId::ensure($_SERVER['HTTP_X_REQUEST_ID'] ?? null);
 // stable request ID, or new if none provided
 ```
 
+### Observability — RequestIdMiddleware
+
+```php
+use Mede\Defense\Http\Middleware\RequestIdMiddleware;
+use Psr\Http\Server\RequestHandlerInterface;
+
+// Wrap in a PSR-15 pipeline (Slim, Laminas, Mezzio…)
+$app->add(new RequestIdMiddleware());
+```
+
 ---
 
 ## Development
@@ -151,10 +162,10 @@ CI runs against PHP 8.2, 8.3, and 8.4.
 
 ## Roadmap
 
-- **v0.3** — Request-ID middleware, JWT adapter interface, better Observability hooks.  
-- **v0.4** — Logging facade, idempotency helpers with Redis/Postgres.  
-- **v0.5+** — Framework integrations (Slim/Laravel), advanced reliability patterns.  
-- **v1.0** — Stable API surface with 85–90% coverage, Packagist-ready.
+- ✅ **v0.3.0** — Request-ID middleware, JWT adapter interface, improved Problem+JSON, health checks.  
+- 🚧 **v0.4.0** — Logging facade, idempotency helpers (Redis/Postgres), retry strategies.  
+- 🔜 **v0.5+** — Framework integrations (Slim/Laravel), advanced reliability patterns.  
+- 🎯 **v1.0** — Stable API surface with 85–90% coverage, Packagist-ready.
 
 ---
 
